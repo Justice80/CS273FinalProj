@@ -145,8 +145,13 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HighPrioQueue.h" />
+    <ClInclude Include="HospitalQueue.h" />
     <ClInclude Include="HospitalSim.h" />
+    <ClInclude Include="LowPrioQueue.h" />
+    <ClInclude Include="Patients.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Staff.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
