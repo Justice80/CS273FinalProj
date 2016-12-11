@@ -13,7 +13,7 @@
 #include "Staff.h"
 #include "Random.h"
 
-Random rand;
+Random rand_num;
 
 class Simulator {
 private:
@@ -92,7 +92,8 @@ public:
 	void run_sim() {
 
 		for (clock = 0; clock < total_time; ++clock) {
-			//update each queue
+			high_prio->update(clock);
+			low_prio->update(clock);
 		}
 
 	}
