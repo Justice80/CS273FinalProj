@@ -42,4 +42,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\residents_of_273ville.txt" />
+    <Text Include="..\..\surnames_of_273ville.txt" />
+  </ItemGroup>
 </Project>

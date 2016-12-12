@@ -48,20 +48,30 @@ public:
 					severity = rand() % 4 + 16;
 				}
 
-				std::ifstream FnameFile, LnameFile;
-				FnameFile.open("residents_of_273ville.txt");
-				LnameFile.open("surname_of_273ville.txt");
-				std::vector<std::string> fnames;
-				std::vector<std::string> lnames;
-				int randNum = rand() % 2000 + 1;
-				while (FnameFile.good()) {			//both while loops allocate names from files to vectors
-					getline(FnameFile, fnames[i]);
-					i++;
-				}
-				i = 0;
-				while (LnameFile.good()) {
-					getline(LnameFile, lnames[i]);
-					i++;
+
+				std::vector<std::string> fnames ;
+				std::vector<std::string> lnames ;
+				std::string name;
+				if (clock == 0) {
+					std::ifstream FnameFile, LnameFile;
+					FnameFile.open("residents_of_273ville.txt");
+					LnameFile.open("surname_of_273ville.txt");
+
+					if (FnameFile.fail()) {
+						while (!FnameFile.eof()) {			//both while loops allocate names from files to vectors
+							std::getline(std::cin, name);
+							fnames.push_back(name);
+							i++;
+						}
+					}
+					i = 0;
+					if (LnameFile.fail()) {
+						while (!LnameFile.eof()) {
+							std::getline(std::cin, name);
+							lnames.push_back(name);
+							i++;
+						}
+					}
 				}
 
 				int FRand = rand() % 2000 + 1;
@@ -77,8 +87,7 @@ public:
 					the_queue.push(p);
 				}
 				else {								//patient is found in the map
-					//auto p = (*it)->second;		?
-					Patients* p = new Patients(fname, lname); //this creates a new patients
+					Patients* p = new Patients(fname, lname);
 					p->addVisit(severity);
 					the_queue.push(p);
 				}

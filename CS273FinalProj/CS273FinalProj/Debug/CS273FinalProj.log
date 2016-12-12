@@ -1,5 +1,5 @@
 ﻿  Source.cpp
 c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.exe
   CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.pdb (Full PDB)

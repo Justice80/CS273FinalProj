@@ -61,13 +61,11 @@ private:
 public:
 	Simulator() {
 		//new queues
-		Staff* nurse_queue;
-		Staff* doctor_queue;
+		nurse_queue = new NurseQ();
+		doctor_queue = new DoctorQ();
 		Hospital_queue = new HospitalQ();
 		high_prio = new HighPrioQ();
 		low_prio = new LowPrioQ();
-		nurse_queue = new NurseQ();
-		doctor_queue = new DoctorQ();
 
 	}
 
@@ -90,12 +88,12 @@ public:
 		low_prio->set_Hospital(Hospital_queue);
 		low_prio->set_Doctors(doctor_queue);
 		low_prio->set_Nurses(nurse_queue);
+		low_prio->set_HighPrioQ(high_prio);
 
 
 	}
 
 	void run_sim() {
-
 		for (clock = 0; clock < total_time; ++clock) {
 			Hospital_queue->update(clock);
 			high_prio->update(clock);
@@ -107,7 +105,6 @@ public:
 	}
 
 	void stats() {
-
 		std::cout << "Number of patients served in the Hospital waiting room: " << std::endl;
 		//show stats
 

@@ -153,6 +153,10 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="Staff.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\residents_of_273ville.txt" />
+    <Text Include="..\..\surnames_of_273ville.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

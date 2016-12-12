@@ -27,29 +27,31 @@ public:
 			the_queue.push(p);
 		}
 		//high priority patients are taken care of low priority patients can go to doctor or nurse
-		if (highPrio->the_queue.empty() && (doctor_queue->the_queue.empty() || nurse_queue->the_queue.empty())) {
-			if (nurse_queue->the_queue.empty()) {
+		if (!the_queue.empty()) {
+			if (highPrio->the_queue.empty() && (doctor_queue->the_queue.empty() || nurse_queue->the_queue.empty())) {
+				if (nurse_queue->the_queue.empty()) {
+					Patients* p = the_queue.top();
+					the_queue.pop();
+					nurse_queue->the_queue.push(p);
+					nurse_queue->set_serviceTime();
+					p->start_Treatment(time);
+				}
+				else if (doctor_queue->the_queue.empty()) {
+					Patients* p = the_queue.top();
+					the_queue.pop();
+					doctor_queue->the_queue.push(p);
+					doctor_queue->set_serviceTime();
+					p->start_Treatment(time);
+				}
+			}
+			//high priority still being worked on by doctors patients can go only to nurse
+			if ((!highPrio->the_queue.empty()) && (nurse_queue->the_queue.empty())) {
 				Patients* p = the_queue.top();
 				the_queue.pop();
 				nurse_queue->the_queue.push(p);
 				nurse_queue->set_serviceTime();
 				p->start_Treatment(time);
 			}
-			else if (doctor_queue->the_queue.empty()) {
-				Patients* p = the_queue.top();
-				the_queue.pop();
-				doctor_queue->the_queue.push(p);
-				doctor_queue->set_serviceTime();
-				p->start_Treatment(time);
-			}
-		}
-		//high priority still being worked on by doctors patients can go only to nurse
-		if ((!highPrio->the_queue.empty()) && (nurse_queue->the_queue.empty())) {
-			Patients* p = the_queue.top();
-			the_queue.pop();
-			nurse_queue->the_queue.push(p);
-			nurse_queue->set_serviceTime();
-			p->start_Treatment(time);
 		}
 	}
 

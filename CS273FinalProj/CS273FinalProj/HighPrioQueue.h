@@ -24,7 +24,7 @@ public:
 		}
 
 		//loop through vector of doctors check to see if theyre free
-		if (doctor_queue->the_queue.empty()) {
+		if ((!the_queue.empty()) && doctor_queue->the_queue.empty()) { 
 			Patients* p = the_queue.top();
 			the_queue.pop();
 			doctor_queue->the_queue.push(p);
