@@ -3,6 +3,7 @@
 #define HOSPITAL_Q_H_
 #include "Patients.h"
 #include <fstream>
+#include <iostream>
 #include <vector>
 #include <ctime>
 #include <utility>
@@ -30,7 +31,6 @@ public:
 
 		if (the_queue.empty()) {
 			if (rand_num.next_double() < arrival_rate) {
-				int i = 0;
 
 				srand(time(NULL));
 				int severityRate = rand() % 10 + 1;
@@ -52,25 +52,20 @@ public:
 				std::vector<std::string> fnames ;
 				std::vector<std::string> lnames ;
 				std::string name;
-				if (clock == 0) {
-					std::ifstream FnameFile, LnameFile;
-					FnameFile.open("residents_of_273ville.txt");
-					LnameFile.open("surname_of_273ville.txt");
+				std::ifstream FnameFile, LnameFile;
+				//FnameFile.open("residents_of_273ville.txt");
+				FnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\residents_of_273ville.txt");
+				LnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\surnames_of_273ville.txt");
 
-					if (FnameFile.fail()) {
-						while (!FnameFile.eof()) {			//both while loops allocate names from files to vectors
-							std::getline(std::cin, name);
-							fnames.push_back(name);
-							i++;
-						}
+				if (!FnameFile.fail()) {
+					while (std::getline(FnameFile, name)) {			//both while loops allocate names from files to vectors
+						fnames.push_back(name);
 					}
-					i = 0;
-					if (LnameFile.fail()) {
-						while (!LnameFile.eof()) {
-							std::getline(std::cin, name);
-							lnames.push_back(name);
-							i++;
-						}
+
+				}
+				if (!LnameFile.fail()) {
+					while (std::getline(LnameFile, name)) {
+						lnames.push_back(name);
 					}
 				}
 
