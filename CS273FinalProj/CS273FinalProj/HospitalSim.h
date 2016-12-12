@@ -1,3 +1,4 @@
+//I think this is finished
 #ifndef HOSPITALSIM_H_
 #define HOSPITALSIM_H_
 
@@ -7,13 +8,17 @@
 #include <limits>
 #include <ios>
 #include <queue>
+#include <map>
+#include <utility>
 #include "HospitalQueue.h"
 #include "HighPrioQueue.h"
 #include "LowPrioQueue.h"
 #include "Staff.h"
 #include "Random.h"
+#include <fstream>
 
 Random rand_num;
+std::map<std::string, Patients> patient_Map;
 
 class Simulator {
 private:
@@ -92,8 +97,11 @@ public:
 	void run_sim() {
 
 		for (clock = 0; clock < total_time; ++clock) {
+			Hospital_queue->update(clock);
 			high_prio->update(clock);
 			low_prio->update(clock);
+			doctor_queue->update(clock);
+			nurse_queue->update(clock);
 		}
 
 	}

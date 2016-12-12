@@ -1,6 +1,5 @@
 ﻿  Source.cpp
-c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(8): error C2065: 'Patients': undeclared identifier
-c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(8): error C2059: syntax error: '>'
-c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(8): error C2976: 'std::queue': too few template arguments
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\queue(19): note: see declaration of 'std::queue'
-c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(20): warning C4624: 'HospitalQ': destructor was implicitly defined as deleted
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalqueue.h(35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.exe
+  CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.pdb (Full PDB)
