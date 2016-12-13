@@ -5,8 +5,8 @@
 
 class Staff {
 protected:
-	int min_service_time;
-	int max_service_time;
+	int min_service_time = 1;
+	int max_service_time = 243;
 	int serviceTime;
 	HospitalQ* hospital_queue;
 	LowPrioQ* lowPrioQ;
@@ -33,6 +33,10 @@ private:
 	std::queue<Patients*> the_queue;
 public:
 	DoctorQ() {}
+	void set_serviceTime() {
+		srand(time(NULL));
+		serviceTime = rand() % this->max_service_time + this->min_service_time;
+	}
 	void update(int clock) {
 		if (!the_queue.empty()) {
 			Patients* p = the_queue.front();
@@ -55,6 +59,10 @@ private:
 	std::queue<Patients*> the_queue;
 public:
 	NurseQ() {}
+	void set_serviceTime() {
+		srand(time(NULL));
+		serviceTime = rand() % this->max_service_time + this->min_service_time;
+	}
 	void update(int clock) {
 		if (!the_queue.empty()) {
 			Patients* p = the_queue.front();

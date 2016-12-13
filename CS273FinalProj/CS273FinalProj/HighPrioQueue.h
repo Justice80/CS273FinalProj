@@ -10,11 +10,15 @@
 class HighPrioQ {
 private:
 	HospitalQ* hospital_queue;
-	DoctorQ* doctor_queue;
+	std::vector<DoctorQ*> doctor_queue;
 	std::priority_queue<Patients*> the_queue;
 public:
 	HighPrioQ() {}
-	void set_Doctors(DoctorQ* Doctors) { this->doctor_queue = Doctors; }
+	void set_Doctors(std::vector<DoctorQ*> Doctors) {
+		for (int i = 0; i < Doctors.size(); i++) {
+			this->doctor_queue.push_back(Doctors[i]);
+		}
+	}
 	void set_Hospital(HospitalQ* Hospital) { this->hospital_queue = Hospital; }
 	void update(int time) {
 		if ((!hospital_queue->the_queue.empty()) && hospital_queue->the_queue.front()->get_severityLevel() > 10) {
@@ -24,14 +28,18 @@ public:
 		}
 
 		//loop through vector of doctors check to see if theyre free
-		if ((!the_queue.empty()) && doctor_queue->the_queue.empty()) { 
-			Patients* p = the_queue.top();
-			the_queue.pop();
-			hospital_queue->increment_num_served();
-			doctor_queue->the_queue.push(p);
-			doctor_queue->set_serviceTime();
-			p->start_Treatment(time);
-		}
+		if ((!the_queue.empty()))
+			for (int i = 0; i < doctor_queue.size(); i++) {
+				if (doctor_queue[i]->the_queue.empty()) {
+					Patients* p = the_queue.top();
+					the_queue.pop();
+					hospital_queue->increment_num_served();
+					doctor_queue[i]->the_queue.push(p);
+					doctor_queue[i]->set_serviceTime();
+					p->start_Treatment(time);
+					break;
+				}
+			}
 
 	}	
 

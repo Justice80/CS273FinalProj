@@ -31,6 +31,8 @@ private:
 	Staff* staff_queue;
 	NurseQ* nurse_queue;
 	DoctorQ* doctor_queue;
+	std::vector<DoctorQ*> doc_Vec;
+	std::vector<NurseQ*> nurse_Vec;
 
 	int read_int(const std::string &prompt, int low, int high)
 	{
@@ -61,8 +63,21 @@ private:
 public:
 	Simulator() {
 		//new queues
-		nurse_queue = new NurseQ();
-		doctor_queue = new DoctorQ();
+		int numStaff = read_int("How many Doctors work in this Hospital? ", 1, 4);
+
+		for (int i = 0; i < numStaff; i++) {
+			doctor_queue = new DoctorQ();
+			doc_Vec.push_back(doctor_queue);
+		}
+
+		numStaff = read_int("How many Nurses work in this Hospital? ", 1, 6);
+
+		for (int i = 0; i < numStaff; i++) {
+			nurse_queue = new NurseQ();
+			nurse_Vec.push_back(nurse_queue);
+		}
+		
+
 		Hospital_queue = new HospitalQ();
 		high_prio = new HighPrioQ();
 		low_prio = new LowPrioQ();
@@ -84,10 +99,10 @@ public:
 
 		//set other queues to referenece each other
 		high_prio->set_Hospital(Hospital_queue);
-		high_prio->set_Doctors(doctor_queue);
+		high_prio->set_Doctors(doc_Vec);
 		low_prio->set_Hospital(Hospital_queue);
-		low_prio->set_Doctors(doctor_queue);
-		low_prio->set_Nurses(nurse_queue);
+		low_prio->set_Doctors(doc_Vec);
+		low_prio->set_Nurses(nurse_Vec);
 		low_prio->set_HighPrioQ(high_prio);
 
 
@@ -98,8 +113,12 @@ public:
 			Hospital_queue->update(clock);
 			high_prio->update(clock);
 			low_prio->update(clock);
-			doctor_queue->update(clock);
-			nurse_queue->update(clock);
+			for (int i = 0; i < doc_Vec.size(); i++) {
+				doc_Vec[i]->update(clock);
+			}
+			for (int j = 0; j < nurse_Vec.size(); j++) {
+				nurse_Vec[j]->update(clock);
+			}
 		}
 
 	}

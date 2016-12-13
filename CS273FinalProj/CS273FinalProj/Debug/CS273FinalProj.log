@@ -1,4 +1,15 @@
 ﻿  Source.cpp
-c:\users\amcneill18\desktop\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  CS273FinalProj.vcxproj -> C:\Users\amcneill18\Desktop\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.exe
-  CS273FinalProj.vcxproj -> C:\Users\amcneill18\Desktop\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.pdb (Full PDB)
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(37): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\staff.h(63): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\highprioqueue.h(18): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\highprioqueue.h(32): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(20): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(25): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(42): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(69): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalsim.h(116): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalsim.h(119): warning C4018: '<': signed/unsigned mismatch
+  CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.exe
+  CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.pdb (Full PDB)

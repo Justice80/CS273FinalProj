@@ -54,8 +54,8 @@ public:
 				std::string name;
 				std::ifstream FnameFile, LnameFile;
 				//FnameFile.open("residents_of_273ville.txt");
-				FnameFile.open("C:\\Users\\amcneill18\\Desktop\\CS273FinalProj\\residents_of_273ville.txt");
-				LnameFile.open("C:\\Users\\amcneill18\\Desktop\\CS273FinalProj\\surnames_of_273ville.txt");
+				FnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\residents_of_273ville.txt");
+				LnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\surnames_of_273ville.txt");
 
 				if (!FnameFile.fail()) {
 					while (std::getline(FnameFile, name)) {			//both while loops allocate names from files to vectors
