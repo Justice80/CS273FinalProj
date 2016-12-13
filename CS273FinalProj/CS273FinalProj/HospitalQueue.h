@@ -32,7 +32,7 @@ public:
 		if (the_queue.empty()) {
 			if (rand_num.next_double() < arrival_rate) {
 
-				srand(time(NULL));
+				srand(clock);
 				int severityRate = rand() % 10 + 1;
 				int severity;
 
@@ -54,8 +54,8 @@ public:
 				std::string name;
 				std::ifstream FnameFile, LnameFile;
 				//FnameFile.open("residents_of_273ville.txt");
-				FnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\residents_of_273ville.txt");
-				LnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\surnames_of_273ville.txt");
+				FnameFile.open("C:\\Users\\amcneill18\\Desktop\\CS273FinalProj\\residents_of_273ville.txt");
+				LnameFile.open("C:\\Users\\amcneill18\\Desktop\\CS273FinalProj\\surnames_of_273ville.txt");
 
 				if (!FnameFile.fail()) {
 					while (std::getline(FnameFile, name)) {			//both while loops allocate names from files to vectors
@@ -69,20 +69,25 @@ public:
 					}
 				}
 
-				int FRand = rand() % 2000 + 1;
-				int LRand = rand() % 1000 + 1;
+				int FRand = rand() % 2000;
+				int LRand = rand() % 1000;
 				std::string fname = fnames[FRand];
 				std::string lname = lnames[LRand];
+				name = fname + " " + lname;
 
-				std::map<std::string, Patients>::iterator it = patient_Map.find(fname);
+				std::map<std::string, Patients>::iterator it = patient_Map.find(name);
 				if (it == patient_Map.end()) {		//patient is not found in the map 
 					Patients* p = new Patients(fname, lname);
-					patient_Map.insert(make_pair(fname, *p));
+					patient_Map.insert(make_pair(p-> get_name(), *p));
+					it = patient_Map.find(name);
+					it->second.addVisit(severity);
 					p->addVisit(severity);
 					the_queue.push(p);
+
 				}
 				else {								//patient is found in the map
 					Patients* p = new Patients(fname, lname);
+					it->second.addVisit(severity);
 					p->addVisit(severity);
 					the_queue.push(p);
 				}

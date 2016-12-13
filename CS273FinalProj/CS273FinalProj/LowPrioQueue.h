@@ -24,6 +24,7 @@ public:
 		if ((!hospital_queue->the_queue.empty()) && hospital_queue->the_queue.front()->get_severityLevel() <= 10) {
 			Patients* p = hospital_queue->the_queue.front();
 			hospital_queue->the_queue.pop();
+
 			the_queue.push(p);
 		}
 		//high priority patients are taken care of low priority patients can go to doctor or nurse
@@ -32,6 +33,7 @@ public:
 				if (nurse_queue->the_queue.empty()) {
 					Patients* p = the_queue.top();
 					the_queue.pop();
+					hospital_queue->increment_num_served();
 					nurse_queue->the_queue.push(p);
 					nurse_queue->set_serviceTime();
 					p->start_Treatment(time);
@@ -39,6 +41,7 @@ public:
 				else if (doctor_queue->the_queue.empty()) {
 					Patients* p = the_queue.top();
 					the_queue.pop();
+					hospital_queue->increment_num_served();
 					doctor_queue->the_queue.push(p);
 					doctor_queue->set_serviceTime();
 					p->start_Treatment(time);
@@ -48,6 +51,7 @@ public:
 			if ((!highPrio->the_queue.empty()) && (nurse_queue->the_queue.empty())) {
 				Patients* p = the_queue.top();
 				the_queue.pop();
+				hospital_queue->increment_num_served();
 				nurse_queue->the_queue.push(p);
 				nurse_queue->set_serviceTime();
 				p->start_Treatment(time);

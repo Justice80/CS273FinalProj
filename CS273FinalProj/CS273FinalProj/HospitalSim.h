@@ -105,9 +105,15 @@ public:
 	}
 
 	void stats() {
-		std::cout << "Number of patients served in the Hospital waiting room: " << std::endl;
-		//show stats
+		std::cout << "Number of patients served in the Hospital waiting room: " << Hospital_queue-> get_num_served() <<std::endl;
+		std::cout << "Average visit time: " << static_cast<double>(clock) / Hospital_queue->get_num_served() << " minutes. " <<std::endl;
+		std::cout << "List of patients & number of visits: " << std::endl;
 
+
+		for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
+			std::cout << it->first << " " << it->second.get_NumVisits() << std::endl;
+
+		}
 	}
 
 };

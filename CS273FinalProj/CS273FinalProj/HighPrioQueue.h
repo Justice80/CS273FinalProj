@@ -27,6 +27,7 @@ public:
 		if ((!the_queue.empty()) && doctor_queue->the_queue.empty()) { 
 			Patients* p = the_queue.top();
 			the_queue.pop();
+			hospital_queue->increment_num_served();
 			doctor_queue->the_queue.push(p);
 			doctor_queue->set_serviceTime();
 			p->start_Treatment(time);
