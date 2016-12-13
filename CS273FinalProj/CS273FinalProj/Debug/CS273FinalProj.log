@@ -11,5 +11,6 @@ c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273fi
 c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\lowprioqueue.h(69): warning C4018: '<': signed/unsigned mismatch
 c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalsim.h(116): warning C4018: '<': signed/unsigned mismatch
 c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalsim.h(119): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\cs273finalproj\cs273finalproj\cs273finalproj\hospitalsim.h(159): warning C4018: '<': signed/unsigned mismatch
   CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.exe
   CS273FinalProj.vcxproj -> C:\Users\Justice Martinez\Documents\GitHub\CS273FinalProj\CS273FinalProj\Debug\CS273FinalProj.pdb (Full PDB)

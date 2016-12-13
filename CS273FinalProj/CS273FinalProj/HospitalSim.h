@@ -124,16 +124,55 @@ public:
 	}
 
 	void stats() {
+		int choice, i, j;
+		std::string name;
+		bool exit = false;
 		std::cout << "Number of patients served in the Hospital waiting room: " << Hospital_queue-> get_num_served() <<std::endl;
 		std::cout << "Average visit time: " << static_cast<double>(clock) / Hospital_queue->get_num_served() << " minutes. " <<std::endl;
-		std::cout << "List of patients & number of visits: " << std::endl;
 
+		do {
+			std::cout << std::endl
+				<< "1 - Show list of patients\n"
+				<< "2 - Get patient recond\n"
+				<< "3 - Exit\n"
+				<< "Enter your choice and press enter: ";
+			std::cin >> choice;
 
-		for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
-			std::cout << it->first << " " << it->second.get_NumVisits() << std::endl;
+			switch (choice)
+			{
+			case 1:
+				std::cout << "List of patients & number of visits: " << std::endl;
+				for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
+					std::cout << it->first << " " << it->second.get_NumVisits() << std::endl;
+				}
+				break;
+			case 2:
+				std::cout << "Type the name of the patient: ";
+				std::cin.ignore();
+				std::getline(std::cin, name);
+				for (i = 1; name[i] != ' ' ; i++) {
+					name[i] = tolower(name[i]);
+					j = i;
 
-		}
-	}
+				}
+
+				for (j; j < name.length(); j++) {
+					name[j] = toupper(name[j]);
+				}
+				for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
+					if (it->first == name)
+						std::cout << "The severity level of this patients injury was " << it->second.get_severityLevel();
+				}
+				break;
+			case 3:
+				exit = true;
+				break;
+			default:
+				break;
+			}
+		} while (exit == false);
+		
+	} 
 
 };
 

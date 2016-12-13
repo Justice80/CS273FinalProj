@@ -29,8 +29,6 @@ public:
 	int get_treatmentStart() { return startTreatment; }
 
 	int get_severityLevel() { return SeverityLevel.front(); }
-
-	std::string get_Name() { return name; }
 };
 
 #endif
