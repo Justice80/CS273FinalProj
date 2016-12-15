@@ -8,6 +8,7 @@ protected:
 	int min_service_time = 1;
 	int max_service_time = 243;
 	int serviceTime;
+	int total_wait;
 	HospitalQ* hospital_queue;
 	LowPrioQ* lowPrioQ;
 	HighPrioQ* highPrioQ;
@@ -19,7 +20,6 @@ public:
 		serviceTime = rand() % this->max_service_time + this->min_service_time;
 	}
 
-	int getServiceTime() { return serviceTime; }
 	virtual void update(int clock) {}
 
 	friend class DoctorQ;
@@ -30,6 +30,7 @@ class DoctorQ : public Staff {
 private:
 	int min_service_time = 1;
 	int max_service_time = 20;
+	int serviceTime;
 	std::queue<Patients*> the_queue;
 public:
 	DoctorQ() {}
@@ -40,9 +41,12 @@ public:
 	void update(int clock) {
 		if (!the_queue.empty()) {
 			Patients* p = the_queue.front();
+			std::map<std::string, Patients>::iterator it = patient_Map.find(p->get_name());
 			//patient has been fully treated
-			if ((clock - p->get_treatmentStart()) > this->getServiceTime()) {
+			if ((clock - it->second.get_treatmentStart()) == this->serviceTime) {
 				the_queue.pop();
+				it->second.set_dichargeTime(clock);
+				it->second.set_wait_time();
 				delete p;
 			}
 		}
@@ -56,6 +60,7 @@ class NurseQ : public Staff {
 private:
 	int min_service_time = 1;
 	int max_service_time = 10;
+	int serviceTime;
 	std::queue<Patients*> the_queue;
 public:
 	NurseQ() {}
@@ -66,9 +71,12 @@ public:
 	void update(int clock) {
 		if (!the_queue.empty()) {
 			Patients* p = the_queue.front();
+			std::map<std::string, Patients>::iterator it = patient_Map.find(p->get_name());
 			//patient has been fully treated
-			if ((clock - p->get_treatmentStart()) > this->getServiceTime()) {
+			if ((clock - p->get_treatmentStart()) == this->serviceTime) {
 				the_queue.pop();
+				it->second.set_dichargeTime(clock);
+				it->second.set_wait_time();
 				delete p;
 			}
 		}

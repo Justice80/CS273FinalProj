@@ -2,7 +2,6 @@
 #ifndef HOSPITAL_Q_H_
 #define HOSPITAL_Q_H_
 #include "Patients.h"
-#include <fstream>
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -12,6 +11,8 @@
 
 extern Random rand_num;
 extern std::map<std::string, Patients> patient_Map;
+extern std::vector<std::string> fnames;
+extern std::vector<std::string> lnames;
 
 class HospitalQ {
 private:
@@ -48,26 +49,7 @@ public:
 					severity = rand() % 4 + 16;
 				}
 
-
-				std::vector<std::string> fnames ;
-				std::vector<std::string> lnames ;
 				std::string name;
-				std::ifstream FnameFile, LnameFile;
-				//FnameFile.open("residents_of_273ville.txt");
-				FnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\residents_of_273ville.txt");
-				LnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\surnames_of_273ville.txt");
-
-				if (!FnameFile.fail()) {
-					while (std::getline(FnameFile, name)) {			//both while loops allocate names from files to vectors
-						fnames.push_back(name);
-					}
-
-				}
-				if (!LnameFile.fail()) {
-					while (std::getline(LnameFile, name)) {
-						lnames.push_back(name);
-					}
-				}
 
 				int FRand = rand() % 2000;
 				int LRand = rand() % 1000;
@@ -82,13 +64,16 @@ public:
 					it = patient_Map.find(name);
 					it->second.addVisit(severity);
 					p->addVisit(severity);
+					it->second.set_arrivalTime(clock);
+					p->set_arrivalTime(clock);
 					the_queue.push(p);
-
 				}
 				else {								//patient is found in the map
 					Patients* p = new Patients(fname, lname);
 					it->second.addVisit(severity);
 					p->addVisit(severity);
+					it->second.set_arrivalTime(clock);
+					p->set_arrivalTime(clock);
 					the_queue.push(p);
 				}
 			}

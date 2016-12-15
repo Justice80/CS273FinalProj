@@ -21,7 +21,7 @@ public:
 	}
 	void set_Hospital(HospitalQ* Hospital) { this->hospital_queue = Hospital; }
 	void update(int time) {
-		if ((!hospital_queue->the_queue.empty()) && hospital_queue->the_queue.front()->get_severityLevel() > 10) {
+		if ((!hospital_queue->the_queue.empty()) && hospital_queue->the_queue.front()->get_severityLevel().front() > 10) {
 			Patients *p = hospital_queue->the_queue.front();
 			hospital_queue->the_queue.pop();
 			the_queue.push(p);
@@ -32,11 +32,13 @@ public:
 			for (int i = 0; i < doctor_queue.size(); i++) {
 				if (doctor_queue[i]->the_queue.empty()) {
 					Patients* p = the_queue.top();
+					std::map<std::string, Patients>::iterator it = patient_Map.find(p->get_name());
 					the_queue.pop();
 					hospital_queue->increment_num_served();
+					p->start_Treatment(time);
+					it->second.start_Treatment(time);
 					doctor_queue[i]->the_queue.push(p);
 					doctor_queue[i]->set_serviceTime();
-					p->start_Treatment(time);
 					break;
 				}
 			}

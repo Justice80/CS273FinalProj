@@ -1,7 +1,7 @@
 //I think this is finished
 #ifndef HOSPITALSIM_H_
 #define HOSPITALSIM_H_
-
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -19,6 +19,8 @@
 
 Random rand_num;
 std::map<std::string, Patients> patient_Map;
+std::vector<std::string> fnames;
+std::vector<std::string> lnames;
 
 class Simulator {
 private:
@@ -60,6 +62,25 @@ private:
 		}
 	}
 
+	void populate_name_vectors() {
+		std::string name;
+		std::ifstream FnameFile, LnameFile;
+		FnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\residents_of_273ville.txt");
+		LnameFile.open("C:\\Users\\Justice Martinez\\Documents\\GitHub\\CS273FinalProj\\surnames_of_273ville.txt");
+
+		if (!FnameFile.fail()) {
+			while (std::getline(FnameFile, name)) {			//both while loops allocate names from files to vectors
+				fnames.push_back(name);
+			}
+
+		}
+		if (!LnameFile.fail()) {
+			while (std::getline(LnameFile, name)) {
+				lnames.push_back(name);
+			}
+		}
+	}
+
 public:
 	Simulator() {
 		//new queues
@@ -81,6 +102,7 @@ public:
 		Hospital_queue = new HospitalQ();
 		high_prio = new HighPrioQ();
 		low_prio = new LowPrioQ();
+		this->populate_name_vectors();
 
 	}
 
@@ -91,7 +113,7 @@ public:
 		int Rate = read_int("Please enter the patient arrival rate (patients/hour): ", 1, 59);
 		double arrival_Rate = Rate / 60.0;
 
-		total_time = read_int("Please enter the simulation time (hours): ", 1, INT_MAX);
+		total_time = read_int("Please enter the simulation time (hours)[a max of 168 hours(a week)]: ", 1, 168);
 		total_time *= 60;
 
 		//set the arrival rate for new patients in hospital(waiting room) queue
@@ -124,19 +146,22 @@ public:
 	}
 
 	void stats() {
-		int choice, i, j;
+		int choice;
 		std::string name;
 		bool exit = false;
+		int avg_wait = 0;
+		int num_served = 0;
 		std::cout << "Number of patients served in the Hospital waiting room: " << Hospital_queue-> get_num_served() <<std::endl;
-		std::cout << "Average visit time: " << static_cast<double>(clock) / Hospital_queue->get_num_served() << " minutes. " <<std::endl;
+		for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
+			if (it->second.get_wait_time() != -1) {
+				avg_wait += it->second.get_wait_time();
+				num_served++;
+			}
+		}
+		std::cout << "Average visit time: " << avg_wait/num_served << " minutes. " <<std::endl;
 
 		do {
-			std::cout << std::endl
-				<< "1 - Show list of patients\n"
-				<< "2 - Get patient recond\n"
-				<< "3 - Exit\n"
-				<< "Enter your choice and press enter: ";
-			std::cin >> choice;
+			choice = read_int("1 - Show list of patients\n2 - Get patient recond\n3 - Exit\nEnter your choice and press enter: ", 1, 4);
 
 			switch (choice)
 			{
@@ -150,18 +175,14 @@ public:
 				std::cout << "Type the name of the patient: ";
 				std::cin.ignore();
 				std::getline(std::cin, name);
-				for (i = 1; name[i] != ' ' ; i++) {
-					name[i] = tolower(name[i]);
-					j = i;
 
-				}
-
-				for (j; j < name.length(); j++) {
-					name[j] = toupper(name[j]);
-				}
 				for (std::map<std::string, Patients>::iterator it = patient_Map.begin(); it != patient_Map.end(); it++) {
-					if (it->first == name)
-						std::cout << "The severity level of this patients injury was " << it->second.get_severityLevel();
+					if (it->first == name) {
+						std::cout << "The severity level of this patients injury was ";
+						for (int i = 0; i < it->second.get_severityLevel().size(); i++) {
+							std::cout << it->second.get_severityLevel()[i] << std::endl;
+						}
+					}
 				}
 				break;
 			case 3:
