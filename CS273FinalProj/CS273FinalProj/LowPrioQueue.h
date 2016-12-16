@@ -69,7 +69,7 @@ public:
 			//high priority still being worked on by doctors patients can go only to nurse
 			if ((!highPrio->the_queue.empty())) {
 				for (int k = 0; k < nurse_queue.size(); k++) {
-					if ((nurse_queue[k]->the_queue.empty())) {
+					if ((nurse_queue[k]->the_queue.empty()) && !the_queue.empty()) {
 						Patients* p = the_queue.top();
 						std::map<std::string, Patients>::iterator it = patient_Map.find(p->get_name());
 						the_queue.pop();
